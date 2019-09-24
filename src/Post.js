@@ -1,4 +1,5 @@
 import React from 'react';
+import IncrementCount from './ReadCount';
 import FormatNum from './FormatNum';
 
 export default function Post(props) {
@@ -8,7 +9,7 @@ export default function Post(props) {
    }
    return (
       <div className="post">
-         <a href={post.url} target="_blank" rel="noopener noreferrer">
+         <a href={post.url} target="_blank" rel="noopener noreferrer" onClick={IncrementCount}>
             {post.title}
          </a>
          <p>{post.score} upvotes</p>

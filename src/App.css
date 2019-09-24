@@ -1,5 +1,5 @@
 body {
-  background-color: #f19d77;
+  background-color: #13100f;
   color: #ffffff;
   font-family: 'Helvetica', sans-serif;
   text-align: center;
@@ -27,7 +27,7 @@ button {
   margin: 10px 20px;
   display: flex;
   flex-direction: column;
-  border: 2px solid #eb5e4c;
+  border: 1px solid #6d251c;
   border-radius: 15px;
 }
 
@@ -41,7 +41,7 @@ button {
 }
 
 .post a:hover {
-  color: #2323a1;
+  color: #2020b6;
 }
 
 .loader, .loader:before, .loader:after {
