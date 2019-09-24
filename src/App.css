@@ -13,6 +13,19 @@ button {
   background-color: #ffffff;
 }
 
+#read-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  background-color: #2020b6;
+  border-radius: 7px;
+}
+
+#read-count > * {
+  margin: 7px 0;
+}
+
 #posts {
   display: flex;
   justify-content: center;

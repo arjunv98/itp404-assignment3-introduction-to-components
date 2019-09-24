@@ -1,19 +1,15 @@
 import React from 'react';
-import IncrementCount from './ReadCount';
 import FormatNum from './FormatNum';
 
 export default function Post(props) {
    let post = props.post.data;
-   if (post.num_comments > 0) {
-
-   }
    return (
       <div className="post">
-         <a href={post.url} target="_blank" rel="noopener noreferrer" onClick={IncrementCount}>
+         <a href={post.url} target="_blank" rel="noopener noreferrer" onClick={props.onClick}>
             {post.title}
          </a>
          <p>{post.score} upvotes</p>
-         <p>{post.num_comments > 0 ? "No" : <FormatNum num = {post.num_comments} />} comments</p>
+         <p>{(post.num_comments > 0) ? <FormatNum num={post.num_comments} /> : "No"} comments</p>
       </div>
    );
 }
