@@ -6,7 +6,7 @@ export default function PostList(props) {
       let posts = props.posts.data.children;
       return (
          posts.map((post) => {
-            return <Post post={post} onClick={props.onClick} key={post.data.id} />
+            return <Post post={post} onLinkClick={props.incrementCount} key={post.data.id} />
          })
       );
    }

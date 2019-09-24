@@ -9,7 +9,7 @@ export default class SearchForm extends React.Component {
    }
    handleSearchInputChange = (event) => {
       this.setState({
-         searchValue: event.target.value
+         searchValue: event.target.value.toLowerCase()
       });
    }
    handleSearch = (event) => {

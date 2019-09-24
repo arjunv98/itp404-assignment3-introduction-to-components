@@ -6,6 +6,7 @@ import SearchForm from './SearchForm';
 import PostList from './PostList';
 import SubbredditInfo from './SubbredditInfo';
 import ReadCount from './ReadCount';
+import PreviousSearches from './PreviousSearches';
 
 class App extends React.Component {
    constructor() {
@@ -13,7 +14,7 @@ class App extends React.Component {
       this.state = {
          posts: [],
          searchValue: '',
-         prevSearches: [],
+         previousSearches: [],
          readCount: 0,
          error: false,
          loading: false
@@ -23,8 +24,14 @@ class App extends React.Component {
       this.setState({ loading: true });
 
       let posts = await getPosts(searchValue);
-      let prevSearches = this.state.prevSearches.concat(searchValue);
-      this.setState({ posts, prevSearches, loading: false });
+
+      let previousSearches = this.state.previousSearches;
+      if (!previousSearches.includes(searchValue)) {
+         previousSearches = previousSearches.concat(searchValue);
+         this.setState({ previousSearches });
+      }
+
+      this.setState({ posts, loading: false });
       if (this.state.posts.error !== undefined) {
          this.state.error = true;
       }
@@ -32,23 +39,20 @@ class App extends React.Component {
          this.state.error = false;
       }
    }
-   incrementCount = (event) => {
+   incrementCount = () => {
       this.setState({ readCount: this.state.readCount + 1 });
    }
    render() {
       return (
          <div>
             <h1>A4: Components and User Events</h1>
-            <ReadCount onClick={this.incrementCount} />
-            <div id="read-count">
-               <h5>Read Count</h5>
-               <p>{this.state.readCount}</p>
-            </div>
+            <ReadCount readCount={this.state.readCount} />
             <SearchForm onSearch={this.handleSearch} />
+            <PreviousSearches previousSearches={this.state.previousSearches} handleClick={this.handleSearch} />
             {this.state.loading && !this.state.error && <Loading />}
             {!this.state.loading && !this.state.error && <SubbredditInfo posts={this.state.posts} />}
             <div id="posts">
-               {!this.state.loading && !this.state.error && <PostList posts={this.state.posts} onClick={this.incrementCount} />}
+               {!this.state.loading && !this.state.error && <PostList posts={this.state.posts} incrementCount={this.incrementCount} />}
             </div>
          </div>
       );

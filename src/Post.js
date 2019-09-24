@@ -5,7 +5,7 @@ export default function Post(props) {
    let post = props.post.data;
    return (
       <div className="post">
-         <a href={post.url} target="_blank" rel="noopener noreferrer" onClick={props.onClick}>
+         <a href={post.url} target="_blank" rel="noopener noreferrer" onClick={props.onLinkClick}>
             {post.title}
          </a>
          <p>{post.score} upvotes</p>
